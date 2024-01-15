@@ -17,7 +17,7 @@ Outline taken from here: https://docs.google.com/document/d/1Vl7BMvzUOhbunJrI_X1
     - [Primary Mechanics](#primary-mechanics)
     - [Secondary Mechanics](#secondary-mechanics)
   - [Art](#art)
-    - [Theme Interpretation](#theme-interpretation-1)
+    - [Theme](#theme)
     - [Design](#design)
   - [Audio](#audio)
     - [Music](#music)
@@ -68,28 +68,63 @@ General audiences familiar with some platformers.
 
 ### Gameplay overview
 
+The player's main objective is to escape the bacteria while overcoming various obstacles such as spikes, traps and enemies. There is a distinct focus on speed. The level design and movement directly support that. On the topic of levels, they are a collection of rooms that can be assembled in any order. (with some restrictions) This allows for randomly generated levels of any length.
+
+During gameplay, the player is able to find collectables that may then be spent on upgrades. There are also secret paths that contain power-ups and/or lots of currency.
+
+The game is "won" if the player reaches the final exit.
+
 ### Theme Interpretation
+
+Bacteria are well known for their ability to rapidly reproduce. The "natural" next step is to come up with a bacteria reproduces at a comical scale. To make it extra dangerous, it really likes to eat other creatures.
 
 ### Primary Mechanics
 
+![](img/mockup.png)
+
 ### Secondary Mechanics
+
+...
 
 ## Art
 
-### Theme Interpretation
+### Theme
+
+The game plays out in an abandoned reasearch complex. Since the bacteria is ever-growing, it will quickly fill up the current room and spill out to the next. This fuels the impending feeling of claustrophobia, putting some pressure on the player.
 
 ### Design
+
+Since we don't have a lot of time on our hands, the visual style is mostly monochrome with specific colors for negative and positive elements. In the default case, red signifies danger and blue corresponds to the player character and collectibles.
+
+Objects are created using simple pixel-art with a focus on readability. There will be some background decoration but not too much. The player is simple, gender-ambiguous stick figure with a blue core. While said core doesn't have clear function right now, it may be useful to convey the player state at some point.
 
 ## Audio
 
 ### Music
 
+TBD. Probably some sort of chiptune or tracker music. Will probably have to grab some free assets.
+
 ### Sound Effects
+
+Sound effects should be punchy and clearly bitcrushed. Fortunately, reducing the quality of sound effects is a lot quicker than enhancing them.
 
 ## Game Experience
 
 ### UI
 
+...
+
 ### Controls
 
+- Controller (xbox)
+  - A/Y: Jump
+  - B/X: Dash
+  - LStick/DPad: Movement
+- Keyboard (QWERTZ)
+  - Y: Jump
+  - X: Dash
+  - Arrows/NumPad: Movement
+
 ## Development Timeline
+
+...
