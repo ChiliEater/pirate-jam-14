@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckoh5qlo6vgir"]
+
+[ext_resource type="TileSet" uid="uid://biih1umv05uv2" path="res://BlobRun/Main/Tiles/Bricks.tres" id="1_2v1de"]
+
+[node name="Bricks" type="TileMap"]
+tile_set = ExtResource("1_2v1de")
+format = 2

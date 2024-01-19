@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmefbl4ibk0lk"]
+
+[ext_resource type="PackedScene" uid="uid://cpp30m81r8mp5" path="res://BlobRun/Main/Game/Game.tscn" id="1_tbnq3"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_djasw"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Main" type="CanvasLayer"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(320, 180)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Game" parent="SubViewport" instance=ExtResource("1_tbnq3")]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_djasw")

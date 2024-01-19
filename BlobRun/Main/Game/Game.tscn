@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpp30m81r8mp5"]
+
+[ext_resource type="PackedScene" uid="uid://bqvi7kcgf6y3g" path="res://BlobRun/Main/Entity/Player/Player.tscn" id="1_jxfpn"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_u1s0b"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tjoji"]
+width = 320
+height = 180
+noise = SubResource("FastNoiseLite_u1s0b")
+
+[node name="Game" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("NoiseTexture2D_tjoji")
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("1_jxfpn")]
+position = Vector2(140, 119)

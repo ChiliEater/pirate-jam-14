@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqvi7kcgf6y3g"]
+
+[ext_resource type="Script" path="res://BlobRun/Main/Entity/Player/Player.cs" id="1_mmpk1"]
+[ext_resource type="SpriteFrames" uid="uid://bcl7pkldaae4i" path="res://BlobRun/Main/Entity/Player/Player.pxo" id="1_rei5d"]
+
+[node name="Player" type="Node2D" node_paths=PackedStringArray("IdleTimer")]
+script = ExtResource("1_mmpk1")
+IdleTimer = NodePath("IdleTimer")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, 3)
+sprite_frames = ExtResource("1_rei5d")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="IdleTimer" type="Timer" parent="."]
