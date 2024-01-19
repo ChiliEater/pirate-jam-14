@@ -1,0 +1,45 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "--no-restore"
+            ],
+            "problemMatcher": "$msCompile",
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            }
+        },
+        {
+            "label": "instrument",
+            "type": "process",
+            "command": "dotnet",
+            "args": [
+                "dotnet-coverage",
+                "instrument",
+                "${workspaceFolder}/.godot/mono/temp/bin/Debug/BlobRun.dll",
+                "--settings",
+                "${workspaceFolder}/jenkins/coverage-settings.xml"
+            ],
+            "dependsOn": "build",
+        },
+        {
+            "label": "cleanup-coverage",
+            "type": "process",
+            "command": "sed",
+            "args": ["-i", "-e", "s/<\\/packages>/<\\/packages>\\n<sources><source\\/><\\/sources>/g", "${workspaceFolder}/coverage.cobertura.xml"],
+            "windows": {
+                "command": ""
+            }
+        }
+    ]
+}

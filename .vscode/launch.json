@@ -1,0 +1,102 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Play",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${env:GODOT4}",
+            "args": [
+                "--quit-on-finish",
+            ],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+        },
+        {
+            "name": "Debug Tests",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${env:GODOT4}",
+            "args": [
+                // These command line flags are used by GoDotTest to run tests.
+                "${workspaceFolder}/BlobRun/Test/Scenes/TestMainScene.tscn",
+                "--run-tests",
+                "--quit-on-finish",
+            ],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+        },
+        {
+            "name": "Run Tests with Coverage",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "instrument",
+            "postDebugTask": "cleanup-coverage",
+            "program": "dotnet",
+            "args": [
+                "dotnet-coverage",
+                "collect",
+                "${env:GODOT4}",
+                // These command line flags are used by GoDotTest to run tests.
+                "${workspaceFolder}/BlobRun/Test/Scenes/TestMainScene.tscn",
+                "--run-tests",
+                "--quit-on-finish",
+                // arguments for dotnet-coverage
+                "--output-format",
+                "cobertura",
+                "--output",
+                "${workspaceFolder}/coverage",
+                "--settings",
+                "${workspaceFolder}/jenkins/coverage-settings.xml"
+            ],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+        },
+        {
+            "name": "Debug Current Test",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${env:GODOT4}",
+            "args": [
+                // These command line flags are used by GoDotTest to run tests.
+                "${workspaceFolder}/BlobRun/Test/Scenes/TestMainScene.tscn",
+                "--run-tests=${fileBasenameNoExtension}",
+                "--quit-on-finish",
+            ],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+        },
+        {
+            "name": "Run Current Test with Coverage",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "postDebugTask": "cleanup-coverage",
+            "program": "dotnet",
+            "args": [
+                "dotnet-coverage",
+                "collect",
+                "${env:GODOT4}",
+                "${workspaceFolder}/BlobRun/Test/Scenes/TestMainScene.tscn",
+                // These command line flags are used by GoDotTest to run tests.
+                "--run-tests=${fileBasenameNoExtension}",
+                "--quit-on-finish",
+                // arguments for dotnet-coverage
+                "--output-format",
+                "cobertura",
+                "--output",
+                "${workspaceFolder}/coverage",
+                "--settings",
+                "${workspaceFolder}/jenkins/coverage-settings.xml"
+            ],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+        },
+    ]
+}
