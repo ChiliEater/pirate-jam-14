@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmefbl4ibk0lk"]
+[gd_scene load_steps=4 format=3 uid="uid://cmefbl4ibk0lk"]
 
 [ext_resource type="PackedScene" uid="uid://cpp30m81r8mp5" path="res://BlobRun/Main/Game/Game.tscn" id="1_tbnq3"]
+[ext_resource type="Script" path="res://BlobRun/Main/Canvas.cs" id="1_x0bvt"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_djasw"]
 viewport_path = NodePath("SubViewport")
 
-[node name="Main" type="CanvasLayer"]
+[node name="Canvas" type="CanvasLayer"]
+script = ExtResource("1_x0bvt")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
