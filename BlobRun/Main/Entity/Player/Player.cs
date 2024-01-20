@@ -17,9 +17,18 @@ public partial class Player : CharacterBody2D
 	private float Speed = 5.0f;
 
 	[Export]
+	private float JumpSpeed = 5.0f;
+
+	[Export]
 	private float Gravity = 10.0f;
 
-	
+	[Export]
+	private int MaxJump = 6;
+
+	private Vector2 RawPosition = Vector2.Zero;
+	private int JumpCounter = 0;
+
+	private Label DebugJumpLabel;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -30,19 +39,25 @@ public partial class Player : CharacterBody2D
 		{
 			if (PlayerSprite.Animation == "Idle")
 			{
-				GD.Print("Timeout");
 				PlayerSprite.Frame = 0;
 				PlayerSprite.SpeedScale = 0.5f;
 				PlayerSprite.Play();
 			}
 		};
 		IdleTimer.Start();
-		GD.Print(Actions.Left.ToString());
+		RawPosition = Position;
+
+		if (Constants.Debug) {
+			DebugJumpLabel = GetNode<Label>("JumpCounter");
+			DebugJumpLabel.Visible = true;
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta);
+		Position = RawPosition; // Restore position
+
 		Vector2 velocity = Velocity;
 
 		if (Input.IsActionPressed(Actions.Left.ToString())) {
@@ -53,11 +68,30 @@ public partial class Player : CharacterBody2D
 			velocity.X = 0;
 		}
 
-		velocity.Y += (float)delta * Gravity;
+		if (Input.IsActionPressed(Actions.Jump.ToString()) && JumpCounter < MaxJump) {
+			JumpCounter++;
+			velocity.Y = -JumpSpeed;
+		}
 
+		velocity.Y += (float)delta * Gravity;
 		Velocity = velocity;
 
-		MoveAndSlide();
+		bool collided = MoveAndSlide();
+		RawPosition = Position; // Store acutal position
+
+		if (collided) {
+			KinematicCollision2D collision = GetLastSlideCollision();
+			if (collision.GetAngle() == 0.0f && JumpCounter > 0) {
+				JumpCounter = 0;
+			}
+			
+		}
+
+		if (Constants.Debug) {
+			DebugJumpLabel.Text = JumpCounter.ToString();
+		}
+
+		Position = Position.Round(); // Round for rendering
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
